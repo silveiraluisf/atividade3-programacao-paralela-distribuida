@@ -11,29 +11,22 @@ int countOccurrences(FILE *fptr, const char *word);
 
 int main()
 {
-    FILE *fptr;
+    FILE *fptr = fopen("livro/teste.txt", "rb");;
     char path[100];
 
     char word[50];
 
     int wCount;
 
-    /* Input file path */
-    printf("Enter file path: ");
-    scanf("%s", path);
-
-    /* Input word to search in file */
+    /* Input da palavra a ser procurada */
     printf("Enter word to search in file: ");
     scanf("%s", word);
-
-    /* Try to open file */
-    fptr = fopen(path, "r");
 
     struct timeval t1, t2;
 
     gettimeofday(&t1, NULL);
 
-    /* Exit if file not opened successfully */
+    /* Tratamento de excessao, caso nao cosiga ler o arquivo */
     if (fptr == NULL)
     {
         printf("Unable to open file.\n");
@@ -42,14 +35,14 @@ int main()
         exit(EXIT_FAILURE);
     }
 
-    // Call function to count all occurrence of word
+    // chama a função para contar o numero de ocorrencias da palavra
     wCount = countOccurrences(fptr, word);
 
     printf("'%s' is found %d times in file.\n", word, wCount);
 
-
-    // Close file
     fclose(fptr);
+
+    // equacao para determinaro tempo de execucao do programa
 
     gettimeofday(&t2, NULL);
 
@@ -61,9 +54,8 @@ int main()
 }
 
 
-/**
- * Returns total occurrences of a word in given file.
- */
+/*retorna o total de ocorrencias de uma determinada palavra em um arquivo */
+
 int countOccurrences(FILE *fptr, const char *word)
 {
     char str[BUFFER_SIZE];
@@ -73,19 +65,15 @@ int countOccurrences(FILE *fptr, const char *word)
     
     count = 0;
 
-    // Read line from file till end of file.
+    // le as linhas do arquivo ate o final dele
     while ((fgets(str, BUFFER_SIZE, fptr)) != NULL)
     {
         index = 0;
 
-        // Find next occurrence of word in str
+        // encontra a proxima ocorrencia da palavra em str
         while ((pos = strstr(str + index, word)) != NULL)
         {
-            // Index of word in str is
-            // Memory address of pos - memory
-            // address of str.
             index = (pos - str) + 1;
-
             count++;
         }
     }
