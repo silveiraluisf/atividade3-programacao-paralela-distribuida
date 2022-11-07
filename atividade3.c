@@ -11,7 +11,7 @@ int countOccurrences(FILE *fptr, const char *word);
 
 int main()
 {
-    FILE *fptr = fopen("livro/teste.txt", "rb");;
+    FILE *fptr = fopen("livro/mobdick.txt", "rb");;
     char path[100];
 
     char word[50];
