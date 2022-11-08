@@ -22,14 +22,14 @@ int main()
 
     gettimeofday(&t1, NULL);
 
-    // chama a função para contar o numero de ocorrencias da palavra
+    /* chama a função para contar o numero de ocorrencias da palavra */
         for (int i = 0; i < num_words; i++)
             qtd_word[i] = countOccurrences(keywords[i]);
 
         for (int j = 0; j < num_words; j++)
             printf("Palavra: %s | Numero de vezes = %d.\n\n", keywords[j], qtd_word[j]);
 
-    // equacao para determinaro tempo de execucao do programa
+    /* equacao para determinaro tempo de execucao do programa */
 
     gettimeofday(&t2, NULL);
 
@@ -61,12 +61,12 @@ int countOccurrences(char *word)
     
     int count = 0;
 
-    // le as linhas do arquivo ate o final dele
+    /* le as linhas do arquivo ate o final dele */
         while ((fgets(str, BUFFER_SIZE, fptr)) != NULL)
         {
             index = 0;
 
-            // encontra a proxima ocorrencia da palavra em str
+            /* encontra a proxima ocorrencia da palavra em str */
             while ((pos = strstr(str + index, word)) != NULL)
                 {
                     index = (pos - str) + 1;

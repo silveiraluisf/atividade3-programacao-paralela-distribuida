@@ -23,8 +23,8 @@ int main()
 
     gettimeofday(&t1, NULL);
 
-    // chama a função para contar o numero de ocorrencias da palavra
-    //omp_set_num_threads(2);
+    /* chama a função para contar o numero de ocorrencias da palavra */
+    omp_set_num_threads(2);
     #pragma omp parallel for
    
         for (int i = 0; i < num_words; i++)
@@ -33,8 +33,7 @@ int main()
         for (int j = 0; j < num_words; j++)
             printf("Palavra: %s | Numero de vezes = %d.\n\n", keywords[j], qtd_word[j]);
 
-    // equacao para determinaro tempo de execucao do programa
-
+    /* equacao para determinaro tempo de execucao do programa */
     gettimeofday(&t2, NULL);
 
     double t_total = (t2.tv_sec - t1.tv_sec) + ((t2.tv_usec - t1.tv_usec)/1000000.0);
@@ -65,12 +64,12 @@ int countOccurrences(char *word)
     
     int count = 0;
 
-    // le as linhas do arquivo ate o final dele
+    /* le as linhas do arquivo ate o final dele */
         while ((fgets(str, BUFFER_SIZE, fptr)) != NULL)
         {
             index = 0;
 
-            // encontra a proxima ocorrencia da palavra em str
+            /* encontra a proxima ocorrencia da palavra em str */
             while ((pos = strstr(str + index, word)) != NULL)
                 {
                     index = (pos - str) + 1;
